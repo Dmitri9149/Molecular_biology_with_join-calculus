@@ -76,8 +76,8 @@ process to the cell 'socialization' : we move back to the unconstrained
 
 *)
 
-(* pattern match on the values to determine the communication
-betveen a cell and environment  *)
+(* pattern match on the values of channels ('messages') to 
+determine the communication betveen a cell and environment  *)
 
 
 let left x = 
@@ -100,11 +100,17 @@ let observe_cell y =
     print_string "cell = "; print_int y; print_string "\n"
 
     
-
+(* cell consume 'food quant' from env and increase in quantity; 
+in case of negative nubers print error message and make 
+all the system as null process*)
 def env(x) & cell(y) = 
-    observe_env x; 
-    observe_cell y;
-    env(left(x,y)) & cell(right(y,x))
+    if x >= 0 && y >= 0 then begin 
+        observe_env x; 
+        observe_cell y;
+        env(left(x,y)) & cell(right(y,x)) end 
+    else begin print_string "not a real life parameters"; 
+        print_string "\n"; 0 end
+    
 ;;
 
 (* Start system with 10 'food quants' and 5 bacerias *)
@@ -115,7 +121,7 @@ spawn env(10) & cell(5)
 (* The channels are asynchronous, we 'do not know' when communication will 
 happens, time scale is determined by compiler and by other processes on our system. 
 For some prints happens we have to delay the same thread running for long 
-enought time. 
+enought time. If still no printing: increse the delay time.
 *)
 Thread.delay 0.0005 
 ;;
@@ -166,4 +172,18 @@ cell = 15
  env = 0
 cell = 15
 ~>/mol_biol$ 
+*)
+
+(*  and if we spawn env with negative values:
+
+spawn env(-10) & cell(5)
+;;
+Thread.delay 0.0005 
+;;
+```
+~>/mol_biol$ jocamlc super_backteria.ml
+~>/mol_biol$ ./a.out
+not a real life parameters
+~>/mol_biol$
+```
 *)
