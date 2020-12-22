@@ -41,7 +41,7 @@ def h & h & o = w .... is not possible.
 def h() & h() = h()
 ;;
 
-File "super_backteria.ml", line 50, characters 4-5:
+File "super_bacteria.ml", line 50, characters 4-5:
 Error: Variable h is bound several times in this matching
 ================================================================
 
@@ -181,7 +181,7 @@ spawn env(-10) & cell(5)
 Thread.delay 0.0005 
 ;;
 ```
-~>/mol_biol$ jocamlc super_backteria.ml
+~>/mol_biol$ jocamlc super_bacteria.ml
 ~>/mol_biol$ ./a.out
 not a real life parameters
 ~>/mol_biol$
