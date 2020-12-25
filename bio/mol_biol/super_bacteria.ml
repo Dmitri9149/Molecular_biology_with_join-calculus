@@ -77,19 +77,25 @@ process to the cell 'socialization' : we move back to the unconstrained
 *)
 
 (* pattern match on the values of channels ('messages') to 
-determine the communication betveen a cell and environment  *)
+determine the communication betveen a cell and environment  
+The first value is for 'food quants' on channel 'env'; 
+the second value is for the number of cells on the channel 'cell'
+*)
 
-
+(* describe what happens with the 'food quants' in the interaction *)
 let left x = 
     match x with 
-    |(0,m) -> 0
+    |(0,m) -> 0 
+    |(m,0) -> (* if there are no cells, 'food quants' can not be consumed*)
     |(n,m) -> n-1
 ;;
 
+(*what happens with number of cells within the interaction*)
 let right x =
     match x with 
-    |(m,0) -> m
-    |(m,n) -> m+1
+    |(0,m) -> m
+    |(n,0) -> 0
+    |(n,m) -> m+1
 
 (* We need some observables to monitore what happens in the system, 
 because we can not print channel with  values directly *)
@@ -107,7 +113,7 @@ def env(x) & cell(y) =
     if x >= 0 && y >= 0 then begin 
         observe_env x; 
         observe_cell y;
-        env(left(x,y)) & cell(right(y,x)) end 
+        env(left(x,y)) & cell(right(x,y)) end 
     else begin print_string "not a real life parameters"; 
         print_string "\n"; 0 end
     
