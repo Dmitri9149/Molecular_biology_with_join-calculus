@@ -88,7 +88,6 @@ let left x =
     |(0,m) -> 0 
     |(m,0) -> (* if there are no cells, 'food quants' can not be consumed*)
     |(n,m) -> n-1
-;;
 
 (*what happens with number of cells within the interaction*)
 let right x =
@@ -117,12 +116,11 @@ def env(x) & cell(y) =
     else begin print_string "not a real life parameters"; 
         print_string "\n"; 0 end
     
-;;
 
 (* Start system with 10 'food quants' and 5 bacerias *)
 
 spawn env(10) & cell(5)
-;;
+
 
 (* The channels are asynchronous, we 'do not know' when communication will 
 happens, time scale is determined by compiler and by other processes on our system. 
@@ -130,7 +128,7 @@ For some prints happens we have to delay the same thread running for long
 enought time. If still no printing: increse the delay time.
 *)
 Thread.delay 0.0005 
-;;
+
 
 (*
 The possible output from the program : 
