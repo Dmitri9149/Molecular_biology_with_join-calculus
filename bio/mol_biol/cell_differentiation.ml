@@ -44,6 +44,8 @@ in accordance with the 'nature' of the state set, which is not an easy task
 type nat = Vacuum | Rise of nat
 ;;
 (*we use symmetrical function, because we would like to model identical cells*)
+(*let five1 = (Rise(Rise(Rise(Rise(Rise(Vacuum)))))) *)
+
 let interact x = 
   match x with 
   |(Vacuum, Vacuum) -> (Vacuum, Vacuum)
@@ -53,12 +55,7 @@ let interact x =
 ;;
 
 
-
-
-
 def c0(x) & c1(y) = print_string "  interact  "; c0(match interact(x,y) with (a,b)-> a) & c1(match interact(x,y) with (a,b)-> b)
-or c0(a) = print_string "   change   "; c1(a)
-or c1(b) = print_string "   change   "; c0(b)
 ;;
 
 spawn c0(Rise Vacuum) & c1(Rise Vacuum)
