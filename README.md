@@ -16,3 +16,7 @@ The ready 'chapters' (every in its own file):
 - super_bacteria.ml -> simple pattern of interaction of environment and groving cells. 
 - cell_differentiation.ml -> in progress.....
 
+It is possible to run the join-calculus in the 
+form of the JoCaml from dockerfile: see  
+https://github.com/Dmitri9149/Dockerized-join-calculus 
+
