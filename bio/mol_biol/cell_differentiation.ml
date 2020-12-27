@@ -1,4 +1,4 @@
-ro(*  Cells in multicellular body are at different stages of differentiation. 
+(*  Cells in multicellular body are at different stages of differentiation. 
 The reason is the cells are living not for their own but for the purpose of the 
 body in which every cell has a special function: cells are services of some kind. 
 Erythrocytes supply oxigen, Lymphocytes are fighting with diversehostile agent, 
@@ -31,9 +31,44 @@ in environment which keep quant 'i->j'.
 may become quite complicated, because in addition to the stages at 
 differentiation tree there might be additional states at every stage, which 
 correspond to the current local conditions at particular site at tissue. 
-  We will firstly consider very simplified model. Cell at is has next(i), cell at j 
-has next(j). There is function interact:  (Int,Int) -> (Int,Int). When cells at i and j 
-meet each other we have:  (i,j) ->  interact (i,j) = (i',j'). 
-Let us reflect it in a code.
+
+  The numbering of states is convenient in some cases, but usually we have to mark states 
+in accordance with the 'nature' of the state set, which is not an easy task 
+(to choose an appropriate state marking). 
+  Let us consider firstly simple cases, then go to more complex.
 *)
+
+(*define natural numbers type, it will be out set of states*)
+
+
+type nat = Vacuum | Rise of nat
+;;
+(*we use symmetrical function, because we would like to model identical cells*)
+let interact x = 
+  match x with 
+  |(Vacuum, Vacuum) -> (Vacuum, Vacuum)
+  |(Vacuum, z) -> (Vacuum,z)
+  |(z,Vacuum) -> (z,Vacuum)
+  |(Rise c , Rise m) -> (Rise (Rise c), Rise (Rise m))
+;;
+
+
+
+
+
+def c0(x) & c1(y) = print_string "  interact  "; c0(match interact(x,y) with (a,b)-> a) & c1(match interact(x,y) with (a,b)-> b)
+or c0(a) = print_string "   change   "; c1(a)
+or c1(b) = print_string "   change   "; c0(b)
+;;
+
+spawn c0(Rise Vacuum) & c1(Rise Vacuum)
+;;
+
+Thread.delay 0.0005
+
+
+
+
+
+
 
