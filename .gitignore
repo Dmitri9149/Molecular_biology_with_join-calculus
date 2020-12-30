@@ -34,3 +34,5 @@ _opam/
 .vscode
 /a.out
 .gitattributes
+
+samples.ml
