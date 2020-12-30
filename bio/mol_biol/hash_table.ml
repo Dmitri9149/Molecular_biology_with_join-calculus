@@ -26,22 +26,31 @@ The cycle is closed.
   how it works for us. 
 *)
 
+(* define the type mset -> multiset as list of tuples*)
 type 'a mset = ('a * int) list;;
 
+(* define fold_right function for future use with mset*)
 let rec fold_right op lst init = match lst with
   | [] -> init
   | h::t -> op h (fold_right op t init)
 ;;
 
+(* mult function -> returns 0 if e is not mset element, 
+   othervise returns the number 
+*)
 let rec mult (xs : 'a mset) (e : 'a ) : int =
   match xs with
   [] -> 0
   | (el, ct)::t -> if el = e then ct else (mult t e)
 ;;
- 
+
+(* some tests with the functions*)
+
+(* samle represents 'bag of moluculs' for influenza*)
 let sample = [("hemagglutinin", 10000000000); ("neuraminidaza", 20)]
 ;;
 
+(* find how many moleculs of "hemagglutinin" there are in the bag*)
 let h_observe = mult sample "hemagglutinin"
 ;;
 
