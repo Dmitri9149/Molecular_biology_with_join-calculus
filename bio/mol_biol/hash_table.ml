@@ -65,7 +65,6 @@ let rec fold f a l =
   |h::t->fold f (f a h) t
 ;;
 
-
 (*the sum of two multisets*)
 let rec sum (xs : 'a mset) (ys : 'a mset) : ('a mset) =
   fold (fun acc (k, _) ->
@@ -74,7 +73,7 @@ let rec sum (xs : 'a mset) (ys : 'a mset) : ('a mset) =
   [] (xs @ ys)
 ;;
 
-(* some checking*)
+(* some checking *)
 let xs = [("prt1",20);("prt2",10)]
 ;;
 
