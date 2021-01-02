@@ -74,18 +74,51 @@ let rec sum (xs : 'a mset) (ys : 'a mset) : ('a mset) =
   [] (xs @ ys)
 ;;
 
+(* some checking*)
 let xs = [("prt1",20);("prt2",10)]
 ;;
 
 let ys = [("prt1",30)]
 ;;
 
-let sum_xs_ys = sum xs ys
+(* some printing of observables *)
+let sum_xs_ys = sum xs ys 
+;;
+let prt1_observe_xs = mult xs "prt1"
+;;
+let prt1_observe_ys =mult ys "prt1"
+;;
+let prt2_observe_xs = mult xs "prt2"
+;;
+let prt2_observe_ys =mult ys "prt2"
+;;
+let prt1_observe_sum = mult sum_xs_ys "prt1"
+;;
+let prt2_observe_sum = mult sum_xs_ys "prt2"
 ;;
 
-let prt1_observe = mult sum_xs_ys "prt1"
+print_string "There are: "; print_int prt1_observe_xs;
+print_string " prt1 in xs."; print_string "\n"
 ;;
 
-print_int prt1_observe; print_string "\n"
+print_string "There are: "; print_int prt2_observe_xs;
+print_string " prt2 in xs."; print_string "\n"
 ;;
+
+print_string "There are: "; print_int prt1_observe_ys;
+print_string " prt1 in ys."; print_string "\n"
+;;
+
+print_string "There are: "; print_int prt2_observe_ys;
+print_string " prt2 in ys."; print_string "\n"
+;;
+
+print_string "There are: "; print_int prt1_observe_sum;
+print_string " prt1 in sum_xs_ys."; print_string "\n"
+;;
+
+print_string "There are: "; print_int prt2_observe_sum;
+print_string " prt2 in sum_xs_ys."; print_string "\n"
+;;
+(* end of observables printing *)
 
