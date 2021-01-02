@@ -54,7 +54,38 @@ let sample = [("hemagglutinin", 10000000000); ("neuraminidaza", 20)]
 let h_observe = mult sample "hemagglutinin"
 ;;
 
-print_int h_observe; print_string "\n"
+print_string "There are: "; print_int h_observe; 
+print_string " hemagglutinins in sample.";
+print_string "\n"
 ;;
 
+let rec fold f a l =
+  match l with
+  [] -> a
+  |h::t->fold f (f a h) t
+;;
+
+
+(*the sum of two multisets*)
+let rec sum (xs : 'a mset) (ys : 'a mset) : ('a mset) =
+  fold (fun acc (k, _) ->
+  if (mult acc k) <> 0 then acc
+  else (k, (mult xs k) + (mult ys k))::acc)
+  [] (xs @ ys)
+;;
+
+let xs = [("prt1",20);("prt2",10)]
+;;
+
+let ys = [("prt1",30)]
+;;
+
+let sum_xs_ys = sum xs ys
+;;
+
+let prt1_observe = mult sum_xs_ys "prt1"
+;;
+
+print_int prt1_observe; print_string "\n"
+;;
 
