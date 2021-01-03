@@ -121,3 +121,18 @@ print_string " prt2 in sum_xs_ys."; print_string "\n"
 ;;
 (* end of observables printing *)
 
+
+(* we will construct simple 'cell' with 'receptor' to which 
+virus may attach and penetrate to the 'cell'.  Penetration means 
+the virus inject its multiset of moleculs-processes to the cell and the 
+multisets are combined within the cell into one multiset of virus - cell 
+molecules-processes 
+*)
+
+(* We will construct the 'influenza ' - like virus. At the beginning it will 
+has 'Hg' - hemmaglutinin; 'Nd' - neuraminidaze and 'Mx' - matrix molecules, one 
+sample of every molecule. *)
+
+Infl_m_set = [("Hg",1);("Nd",1);("Mx",1)]
+
+Cell_m_set = [("Rc",10);("Others":10)]
