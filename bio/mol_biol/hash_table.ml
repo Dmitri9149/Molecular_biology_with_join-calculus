@@ -141,7 +141,24 @@ Cell_m_set = [("Rc",10);("Others":10)]
 
 (* and we will define the simple reaction: our virus can not do too 
 many at the stage: it will just inject all its proteins to the cell 
- Firstly we have to define a function for the 2 multisets interaction*)
+ Firstly we have to define a function for the 2 multisets interaction
+ The first parameter is for virus, second for cell
+ *)
+
+ (* function to change element (key:number) of out multiset*)
+
+ (* from https://stackoverflow.com/questions/26412993/ocaml-returning-full-list-after-change-to-element*)
+let rec change key value dict =
+  match dict with
+    | [] -> (key, value)::dict (*Adding to the dictionary*)
+    | (a,b) :: dict -> if compare a key = 0 then (a, value)::dict (*changing value*)
+                      else (a,b)::change key value dict (*continue search*)
+;;
+
+(* let inter (a,b) = 
+  let z = mult a "Hg" in  
+  if z > 1 and mult b "Rc" > 1 begin let new_a = change "Hg" (z-1) a in 
+  end *)
 
 
 
