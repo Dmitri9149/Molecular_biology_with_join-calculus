@@ -134,5 +134,15 @@ has 'Hg' - hemmaglutinin; 'Nd' - neuraminidaze and 'Mx' - matrix molecules, one
 sample of every molecule. *)
 
 Infl_m_set = [("Hg",1);("Nd",1);("Mx",1)]
+;;
 
 Cell_m_set = [("Rc",10);("Others":10)]
+;;
+
+(* and we will define the simple reaction: our virus can not do too 
+many at the stage: it will just inject all its proteins to the cell 
+ Firstly we have to define a function for the 2 multisets interaction*)
+
+
+
+
